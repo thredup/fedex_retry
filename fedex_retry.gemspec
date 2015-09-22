@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'fedex_tracking_client/version'
+require 'fedex_retry/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "fedex_tracking_client"
-  spec.version       = FedexTrackingClient::VERSION
+  spec.name          = "fedex_retry"
+  spec.version       = FedexRetry::VERSION
   spec.authors       = ["Erick Brower"]
   spec.email         = ["erick.brower@thredup.com"]
 

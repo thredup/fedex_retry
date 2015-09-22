@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe FedexTrackingClient do
+describe FedexRetry do
   subject do 
-    FedexTrackingClient::Tracker.new({
+    FedexRetry::Tracker.new({
       key: '1234',
       password: 'password',
       account_number: 'something',
@@ -22,6 +22,6 @@ describe FedexTrackingClient do
 
   it 'tracks packages using any number of tracking numbers' do
     expect(fedex_connection).to receive(:track).at_least(tracking_numbers.count).times
-    expect { subject.track(tracking_numbers) }.to raise_error(FedexTrackingClient::NoWorkingTrackingNumberError)
+    expect { subject.track(tracking_numbers) }.to raise_error(FedexRetry::NoWorkingTrackingNumberError)
   end
 end

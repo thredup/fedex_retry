@@ -1,3 +1,3 @@
-module FedexTrackingClient 
+module FedexRetry
   class NoWorkingTrackingNumberError < StandardError; end;
 end

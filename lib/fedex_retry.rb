@@ -1,10 +1,10 @@
-require "fedex_tracking_client/version"
-require "fedex_tracking_client/no_working_tracking_number_error"
+require "fedex_retry/version"
+require "fedex_retry/no_working_tracking_number_error"
 require "bundler"
 
 Bundler.require(:default, ENV['RAILS_ENV'] || :development)
 
-module FedexTrackingClient
+module FedexRetry
   class Tracker
     def initialize(connection_props)
       create_connection_handle(connection_props)
@@ -18,7 +18,7 @@ module FedexTrackingClient
       resp.first if resp && resp.any?
     rescue ::Fedex::RateError
       if tracking_numbers.count.zero?
-        raise FedexTrackingClient::NoWorkingTrackingNumberError
+        raise FedexRetry::NoWorkingTrackingNumberError
       else
         retry
       end
