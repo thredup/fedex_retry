@@ -16,7 +16,10 @@ module FedexRetry
       number = tracking_numbers.pop
       resp = @fedex.track(tracking_number: number)
       resp.first if resp && resp.any?
-    rescue ::Fedex::RateError
+    rescue => e
+      Rails.logger.info('Error in fedex retry gem')
+      Rails.logger.info(tracking_numbers.inspect)
+      Rails.logger.info(e)
       if tracking_numbers.count.zero?
         raise FedexRetry::NoWorkingTrackingNumberError
       else
